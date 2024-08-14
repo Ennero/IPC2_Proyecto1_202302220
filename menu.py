@@ -2,9 +2,21 @@
 #Algunas funciones que se necesiten para el menu o todo el programa
 #Pretendiéndo que sea como mi Main
 import xml.etree.ElementTree as ET
+
+
 def cargarArchivo(): #Función para cargar el archivo
     ruta=input("Ingrese la ruta del archivo: ")
-
+    arbol=ET.parse(ruta) #parseando la ruta del archivo
+    ramas=arbol.getroot() #Obteniendo la raíz del archivo
+    for i in ramas.iter("matriz"):
+        print(i.tag ,"número.", i)
+        for nombre, fila, columna in i.attrib.items():
+            print("Nombre: ", nombre, "Fila: ", fila, "Columna: ", columna)
+            print("-----------------------")
+        for j in i.iter("dato"):
+            print(j.get('x'))
+            print(j.get('y'))
+            print(j.text)
 
 
 def procesarArchivo(): #Función para procesar el archivo
