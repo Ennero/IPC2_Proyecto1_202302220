@@ -5,37 +5,63 @@ import xml.etree.ElementTree as ET
 import apuntador as ap
 
 matrices=ap.listita() #aquí las matrices se guardarán :)
+matrix=ap.listita() #aquí las matrices de acceso se crearán :)
 
 def cargarArchivo():  # Función para cargar el archivo
     ruta = "e.xml"
     # ruta = input("Ingrese la ruta del archivo: ") -----------------------------------------------------------------
-
+    print("Cargando Archivo...")  # Mensaje de carga
     arbol = ET.parse(ruta)  # parseando la ruta del archivo
     ramas = arbol.getroot()  # Obteniendo la raíz del archivo
     for i in ramas.iter("matriz"):
         nombre = str(i.get("nombre"))
         n = int(i.get("n"))
         m = int(i.get("m"))
-        nombre=ap.matriz(nombre, n, m)
+        nombre=ap.matriz(nombre, n, m) #creación de la matriz con los datos respectivos
         for j in i.iter("dato"):
             x = int(j.get("x"))
             y = int(j.get("y"))
-            text = str(j.text)
-            nombre.modificar(x, y, text)
+            text = int(j.text)
+            nombre.modificar(x, y, text) #modificando cada dato de la matriz en su lugar
         matrices.agregar(nombre) #Agregando la matriz a la lista de la matrices
-
+    print("Archivo", ruta," cargado con exitosamente")
     #Ciclo para ver si lo hice bien :)
     contodini=0
     while contodini<=matrices.tamaño:
         matrices.encontrar(contodini-1).mostrar()
         contodini+=1
+    #kasjdfhkasdhfoiusadhvpiuafsadhidjdskfklaerehnfcehrlcgnerwknhljdrlewvqporcof
 
     
 
 
 def procesarArchivo():  # Función para procesar el archivo
-    print("Procesar Archivo --")
-
+    print("Procesando Archivo...")
+    print("Transformando matrices en matrices de entrada...")
+    contando=0
+    matrix=matrices
+    while contando<=matrix.tamaño: #Moviendo en la lista en donde están la matrices
+        contodono=0
+        while contodono<=matrix.encontrar(contando-1).n: #Recorriendo las filas de la matriz
+            contodororo=0
+            while contodororo<=matrix.encontrar(contando-1).m: #Recorriendo las columnas de la matriz
+                if (matrix.encontrar(contando-1).encontrar(contodono, contodororo)<=0): #Si tiene una entrada, lo vuelve 1
+                    matrix.encontrar(contando-1).modificar(contodono,contodororo,0)
+                else:
+                    matrix.encontrar(contando-1).modificar(contodono,contodororo,1) #Si no tiene entrada, lo vuelve 0
+                contodororo+=1
+            contodono+=1 #Los contadorinis xd
+        contando+=1
+    contodini=0
+    #Aquí tambien solo ando viendo que se haya realizado correctamente
+    while contodini<=matrices.tamaño:
+        matrices.encontrar(contodini-1).mostrar()
+        contodini+=1
+    #......................................................................
+    print("Matrices de entrada creadas con exitosamente")
+    print("Generando matrices de frecuencia reducidas...")
+    
+    
 
 def escribirArchivo():  # Función para escribir el archivo de salida
     print("Escribir Archivo de salida --")
@@ -59,11 +85,10 @@ while salir:  # El ciclo para mostrar el menu principal
     op = input("Ingrese una opción: ")
     match op:
         case "1":
-            print("Cargar Archivo --")
             cargarArchivo()
 
         case "2":
-            print("Procesar Archivo --")
+            procesarArchivo()
         case "3":
             print("Escribir Archivo de salida --")
         case "4":
