@@ -1,36 +1,52 @@
-#Aquí solo meteré el menu y probablemente
-#Algunas funciones que se necesiten para el menu o todo el programa
-#Pretendiéndo que sea como mi Main
+# Aquí solo meteré el menu y probablemente
+# Algunas funciones que se necesiten para el menu o todo el programa
+# Pretendiéndo que sea como mi Main
 import xml.etree.ElementTree as ET
+import apuntador as ap
+
+fila = listita()
+columna = listita()
 
 
-def cargarArchivo(): #Función para cargar el archivo
-    ruta="e.xml"
-    # ruta=input("Ingrese la ruta del archivo: ")
-    arbol=ET.parse(ruta) #parseando la ruta del archivo
-    ramas=arbol.getroot() #Obteniendo la raíz del archivo
-    for i in ramas.iter('matriz'):
-        nombre=i.get('nombre')
-        n=i.get('n')
-        m=i.get('m')
-        for j in i.iter('dato'):
-            x=j.get('x')
-            y=j.get('y')
-            text=j.text   
+def cargarArchivo():  # Función para cargar el archivo
+    ruta = "e.xml"
+    # ruta = input("Ingrese la ruta del archivo: ") -----------------------------------------------------------------
+    try:
+        arbol = ET.parse(ruta)  # parseando la ruta del archivo
+        ramas = arbol.getroot()  # Obteniendo la raíz del archivo
+        for i in ramas.iter("matriz"):
+            nombre = i.get("nombre")
+            n = i.get("n")
+            m = i.get("m")
+            for j in i.iter("dato"):
+                x = j.get("x")
+                y = j.get("y")
+                text = j.text
+    except FileNotFoundError:
+        print(f"Error: El archivo '{ruta}' no se encontró.")
+    except ET.ParseError:
+        print(
+            f"Error: No se pudo parsear el archivo '{ruta}'. Verifique que el archivo esté bien formado."
+        )
+    except Exception as e:
+        print(f"Error inesperado: {e}")
 
 
-def procesarArchivo(): #Función para procesar el archivo
+def procesarArchivo():  # Función para procesar el archivo
     print("Procesar Archivo --")
 
-def escribirArchivo(): #Función para escribir el archivo de salida
+
+def escribirArchivo():  # Función para escribir el archivo de salida
     print("Escribir Archivo de salida --")
 
-def generarGrafica(): #Función para generar la gráfica
+
+def generarGrafica():  # Función para generar la gráfica
     print("Generando gráfica...")
 
+
 print("      BIENVENIDO")
-salir = True #Variable para salir del ciclo
-while salir: #El ciclo para mostrar el menu principal
+salir = True  # Variable para salir del ciclo
+while salir:  # El ciclo para mostrar el menu principal
     print("-----------------------")
     print("--MENU PRINCIPAL--")
     print("1. -- Cargar Archivo")
@@ -44,6 +60,7 @@ while salir: #El ciclo para mostrar el menu principal
         case "1":
             print("Cargar Archivo --")
             cargarArchivo()
+
         case "2":
             print("Procesar Archivo --")
         case "3":
@@ -62,4 +79,3 @@ while salir: #El ciclo para mostrar el menu principal
             salir = False
         case _:
             print("Opción no válida")
-    
