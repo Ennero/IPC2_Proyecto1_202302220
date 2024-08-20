@@ -4,32 +4,33 @@
 import xml.etree.ElementTree as ET
 import apuntador as ap
 
-columna = listita()
-
+matrices=ap.listita() #aquí las matrices se guardarán :)
 
 def cargarArchivo():  # Función para cargar el archivo
     ruta = "e.xml"
     # ruta = input("Ingrese la ruta del archivo: ") -----------------------------------------------------------------
-    try:
-        arbol = ET.parse(ruta)  # parseando la ruta del archivo
-        ramas = arbol.getroot()  # Obteniendo la raíz del archivo
-        for i in ramas.iter("matriz"):
-            nombre = i.get("nombre")
-            n = i.get("n")
-            m = i.get("m")
-            
-            for j in i.iter("dato"):
-                x = j.get("x")
-                y = j.get("y")
-                text = j.text
-    except FileNotFoundError:
-        print(f"Error: El archivo '{ruta}' no se encontró.")
-    except ET.ParseError:
-        print(
-            f"Error: No se pudo parsear el archivo '{ruta}'. Verifique que el archivo esté bien formado."
-        )
-    except Exception as e:
-        print(f"Error inesperado: {e}")
+
+    arbol = ET.parse(ruta)  # parseando la ruta del archivo
+    ramas = arbol.getroot()  # Obteniendo la raíz del archivo
+    for i in ramas.iter("matriz"):
+        nombre = str(i.get("nombre"))
+        n = int(i.get("n"))
+        m = int(i.get("m"))
+        nombre=ap.matriz(nombre, n, m)
+        for j in i.iter("dato"):
+            x = int(j.get("x"))
+            y = int(j.get("y"))
+            text = str(j.text)
+            nombre.modificar(x, y, text)
+        matrices.agregar(nombre) #Agregando la matriz a la lista de la matrices
+
+    #Ciclo para ver si lo hice bien :)
+    contodini=0
+    while contodini<=matrices.tamaño:
+        matrices.encontrar(contodini-1).mostrar()
+        contodini+=1
+
+    
 
 
 def procesarArchivo():  # Función para procesar el archivo

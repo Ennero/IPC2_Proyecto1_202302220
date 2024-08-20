@@ -33,9 +33,6 @@ class listita:  # La listita para las filas
             print(aux.dato)
             aux = aux.siguiente
 
-    def mostrarTamaño(self): #Para saber el tamaño de mi lista
-        return self.tamaño
-    
     def modificar(self, pos, dato): #Para modificar un dato en una posición indicada
         aux = self.inicio
         cont = 0
@@ -59,7 +56,7 @@ class matriz:
         self.m = m #cantidad de columnas
         self.filas = listita()
         self.columnas = listita()
-        relleno=1 #El espacio en blanco para darle tamaño a la matriz
+        relleno="papayo" #El espacio en blanco para darle tamaño a la matriz
         contadorn=0
         while contadorn<n:
             contadorm=0
@@ -74,16 +71,25 @@ class matriz:
         contadoro=0
         while contadoro<self.n:
             contadori=0
+            print("Fila: ", contadoro+1)
             while contadori<self.m:
                 print(self.filas.encontrar(contadoro).encontrar(contadori))
                 contadori+=1
             contadoro+=1
+
+    
+    def modificar(self, x, y, dato):
+        self.filas.encontrar(x-1).modificar(y-1,dato)
 
 
 
 
 luisfonsi=matriz("LuisFonsi", 3, 3)
 
+
+luisfonsi.modificar(1, 1, "Despacito")
+luisfonsi.modificar(1, 2, "Daddy Yanky")
+luisfonsi.modificar(2, 2, "Mario Lopez")
 luisfonsi.mostrar()
 
 
@@ -93,19 +99,6 @@ luisfonsi.mostrar()
 
 
 # Aquí voy a probar si sirve lo que hice xd
-"""
-estudiante = listita()
 
-
-estudiante.agregar("Enner")
-estudiante.agregar("Luis")
-estudiante.agregar("Marian")
-estudiante.agregar("Mario")
-estudiante.agregar("Berti")
-listita.mostrando(estudiante)  # Aquí debería mostrar los nombres de los estudiantes
-estudiante.modificar(2, "Alfonso")
-estudiante.mostrando()
-print(estudiante.mostrarTamaño())
-"""
 
 
