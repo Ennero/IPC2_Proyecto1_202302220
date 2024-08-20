@@ -4,7 +4,6 @@
 import xml.etree.ElementTree as ET
 import apuntador as ap
 
-fila = listita()
 columna = listita()
 
 
@@ -18,6 +17,7 @@ def cargarArchivo():  # Función para cargar el archivo
             nombre = i.get("nombre")
             n = i.get("n")
             m = i.get("m")
+            
             for j in i.iter("dato"):
                 x = j.get("x")
                 y = j.get("y")
