@@ -5,6 +5,9 @@ class nodo:  # El nodito
         self.anterior = anterior
 
 
+#Las matrices funcionan desde 1 y las listas desde 0 :)
+#Soy bobo pero si funciona así lo dejo [Es la ley del ingeniero en sistemas]
+
 class listita:  # La listita para las filas
     def __init__(self, inicio=None, fin=None, tamaño=0):  # El constructor de la lista
         self.inicio = inicio
@@ -49,6 +52,24 @@ class listita:  # La listita para las filas
             aux = aux.siguiente  # Aquí llego a la posición
             cont += 1
         return aux.dato  # Retorno el nodo que deseo
+    
+    def concatenarF(self): #Función para que la fila sea una sola línea
+        aux = self.inicio
+        cadena = ""
+        while aux != None:
+            cadena += str(aux.dato) #proceso de concatenación por cada elemento de la fila
+            aux = aux.siguiente
+        return cadena
+    
+    def eliminar(self, pos):
+        aux = self.inicio
+        cont = 0
+        while cont < pos: # Ubico donde quiero borrar el nodo
+            aux = aux.siguiente
+            cont += 1
+        aux.anterior.siguiente = aux.siguiente #el anterior tendrá como siguiente el siguiente al actual
+        aux.siguiente.anterior = aux.anterior #el siguiente tendrá como anterior el anterior al actual
+        self.tamaño -= 1 #Bajo el tamaño de la lista
 
 
 class matriz:
@@ -79,20 +100,33 @@ class matriz:
                 contadori += 1
             contadoro += 1
 
-    def encontrar(self, x, y):
+    def encontrar(self, x, y): #Encuentra el dato en la posición indicada
         return self.filas.encontrar(x - 1).encontrar(y - 1)
 
-    def modificar(self, x, y, dato):
+    def modificar(self, x, y, dato): #Modifica el dato en la posición indicada
         self.filas.encontrar(x - 1).modificar(y - 1, dato)
 
+    def encontrarF(self, x): #Encuentra la fila en la posición indicada
+        return self.filas.encontrar(x - 1)
+    
+    def encontrarC(self, y): #Encuentra la columna en la posición indicada
+        return self.columnas.encontrar(y - 1)
 
-luisfonsi = matriz("LuisFonsi", 3, 3)
-
-
-luisfonsi.modificar(1, 1, "Despacito")
-luisfonsi.modificar(1, 2, "Daddy Yanky")
-luisfonsi.modificar(2, 2, "Mario Lopez")
-luisfonsi.mostrar()
+#Pediente de ser probrado el dia 21 de Agostoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+    def sumaModificaEliminaF(self,pos1, pos2): #Suma las filas pos1 y pos2 y lo coloca en la fila pos1
+        contador=0
+        while contador<self.m: #Recorre toda la fila y va sumando los elementos de las dos filas en las posiciones indicadas
+            self.filas.encontrar(pos1-1).modificar(pos1, contador, self.filas.encontrar(pos1-1).encontrar(contador)+self.filas.encontrar(pos2-1).encontrar(contador))
+            contador+=1
+        self.filas.eliminar(pos2)
+        
 
 
 # Aquí voy a probar si sirve lo que hice xd
+luisfonsi = matriz("LuisFonsi", 3, 3)
+
+print(luisfonsi.encontrarF(3) == luisfonsi.encontrarF(2))
+    
+luisfonsi.modificar(1,1,luisfonsi.encontrar(1, 1)+luisfonsi.encontrar(1, 3))
+print(luisfonsi.encontrarF(1).concatenarF())
+luisfonsi.mostrar()

@@ -6,6 +6,7 @@ import apuntador as ap
 
 matrices=ap.listita() #aquí las matrices se guardarán :)
 matrix=ap.listita() #aquí las matrices de acceso se crearán :)
+matrixR=ap.listita() #aquí las matrices de acceso reducidas se guardarán :)
 
 def cargarArchivo():  # Función para cargar el archivo
     ruta = "e.xml"
@@ -24,14 +25,14 @@ def cargarArchivo():  # Función para cargar el archivo
             text = int(j.text)
             nombre.modificar(x, y, text) #modificando cada dato de la matriz en su lugar
         matrices.agregar(nombre) #Agregando la matriz a la lista de la matrices
-    print("Archivo", ruta," cargado con exitosamente")
+    print("Archivo", ruta,"cargado con exitosamente")
     #Ciclo para ver si lo hice bien :)
     contodini=0
     while contodini<=matrices.tamaño:
         matrices.encontrar(contodini-1).mostrar()
         contodini+=1
     #kasjdfhkasdhfoiusadhvpiuafsadhidjdskfklaerehnfcehrlcgnerwknhljdrlewvqporcof
-
+    
     
 
 
@@ -60,16 +61,29 @@ def procesarArchivo():  # Función para procesar el archivo
     #......................................................................
     print("Matrices de entrada creadas con exitosamente")
     print("Generando matrices de frecuencia reducidas...")
+    #En proceso creativo de mi cabecita cabezosaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    contuno=0
+    matrixxi=matrices
+    while contuno<=matrix.tamaño: #moviendo en el arreglo de las matrices
+        contdos=0
+        while contdos<=matrix.encontrar(contuno-1).n: #recorriendo las filas de la matriz
+            conttres=0
+            jala=0
+            fila=matrix.encontrar(contuno-1).encontrarF(contdos).concatenarF() #obteniendo la fila que evaluaré
+            while contdos<=matrix.encontrar(contuno-1).n:
+                fila2=matrix.encontrar(contuno-1).encontrarF(conttres).concatenarF() #obteniendo la fila que compararé
+                if fila==fila2:
+                    jala+=1
+                if(jala>=2):
+                    matrix.encontrar(contuno-1).sumaModificaEliminaF(contdos, conttres) #Suma, modifica y elimina la fila
+    #En proceso creativo de mi cabecita cabezosaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     
-    
-
 def escribirArchivo():  # Función para escribir el archivo de salida
     print("Escribir Archivo de salida --")
 
 
 def generarGrafica():  # Función para generar la gráfica
     print("Generando gráfica...")
-
 
 print("      BIENVENIDO")
 salir = True  # Variable para salir del ciclo
