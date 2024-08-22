@@ -64,18 +64,27 @@ def procesarArchivo():  # Función para procesar el archivo
     #En proceso creativo de mi cabecita cabezosaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     contuno=0
     matrixxi=matrices
-    while contuno<=matrix.tamaño: #moviendo en el arreglo de las matrices
+    matrixxixxi=matrix
+    while contuno<=matrixxixxi.tamaño: #moviendo en el arreglo de las matrices
         contdos=0
-        while contdos<=matrix.encontrar(contuno-1).n: #recorriendo las filas de la matriz
+        borde=matrixxixxi.encontrar(contuno-1).n
+        while contdos<=borde: #recorriendo las filas de la matriz
             conttres=0
             jala=0
-            fila=matrix.encontrar(contuno-1).encontrarF(contdos).concatenarF() #obteniendo la fila que evaluaré
-            while contdos<=matrix.encontrar(contuno-1).n:
-                fila2=matrix.encontrar(contuno-1).encontrarF(conttres).concatenarF() #obteniendo la fila que compararé
-                if fila==fila2:
+            fila=matrixxixxi.encontrar(contuno-1).encontrarF(contdos).concatenarF() #obteniendo la fila que evaluaré
+            while conttres<=borde: #recorriendo las filas de la matriz
+                fila2=matrixxixxi.encontrar(contuno-1).encontrarF(conttres).concatenarF() #obteniendo la fila que compararé
+                if fila==fila2: #verificando
                     jala+=1
                 if(jala>=2):
-                    matrix.encontrar(contuno-1).sumaModificaEliminaF(contdos, conttres) #Suma, modifica y elimina la fila
+                    matrixxi.encontrar(contuno-1).sumaModificaEliminaF(contdos, conttres) #Suma, modifica y elimina la fila
+                    matrixxixxi.encontrar(contuno-1).encontrarF(conttres).eliminar(conttres) #Elimina la fila de la matriz
+                    borde-=1
+                    contdos-=1
+                conttres+=1
+            contdos+=1
+        contuno+=1
+
     #En proceso creativo de mi cabecita cabezosaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     
 def escribirArchivo():  # Función para escribir el archivo de salida

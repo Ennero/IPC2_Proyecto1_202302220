@@ -67,8 +67,13 @@ class listita:  # La listita para las filas
         while cont < pos: # Ubico donde quiero borrar el nodo
             aux = aux.siguiente
             cont += 1
-        aux.anterior.siguiente = aux.siguiente #el anterior tendrá como siguiente el siguiente al actual
-        aux.siguiente.anterior = aux.anterior #el siguiente tendrá como anterior el anterior al actual
+        if aux == self.inicio:
+            self.inicio=aux.siguiente #el inicio será el siguiente al actual
+        elif aux == self.fin:
+            aux.anterior.siguiente = None
+        else:
+            aux.anterior.siguiente = aux.siguiente #el anterior tendrá como siguiente el siguiente al actual
+            aux.siguiente.anterior = aux.anterior
         self.tamaño -= 1 #Bajo el tamaño de la lista
 
 
@@ -112,21 +117,33 @@ class matriz:
     def encontrarC(self, y): #Encuentra la columna en la posición indicada
         return self.columnas.encontrar(y - 1)
 
-#Pediente de ser probrado el dia 21 de Agostoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
     def sumaModificaEliminaF(self,pos1, pos2): #Suma las filas pos1 y pos2 y lo coloca en la fila pos1
         contador=0
+
         while contador<self.m: #Recorre toda la fila y va sumando los elementos de las dos filas en las posiciones indicadas
-            self.filas.encontrar(pos1-1).modificar(pos1, contador, self.filas.encontrar(pos1-1).encontrar(contador)+self.filas.encontrar(pos2-1).encontrar(contador))
+            luis=self.encontrarF(pos1).encontrar(contador)
+            fonsi=self.encontrarF(pos2).encontrar(contador)
+            luisfonsi=luis+fonsi #guardando la suma de los dos valores
+            self.encontrarF(pos1).modificar(contador,luisfonsi) #modificando la fila en la posición indicada
             contador+=1
-        self.filas.eliminar(pos2)
+        self.filas.eliminar(pos2) #Eliminando la fila que se sumó
+        self.n=self.n-1 #bajando la cantidad de filas
+
         
+
+
+
 
 
 # Aquí voy a probar si sirve lo que hice xd
 luisfonsi = matriz("LuisFonsi", 3, 3)
 
-print(luisfonsi.encontrarF(3) == luisfonsi.encontrarF(2))
+
     
 luisfonsi.modificar(1,1,luisfonsi.encontrar(1, 1)+luisfonsi.encontrar(1, 3))
+
+
 print(luisfonsi.encontrarF(1).concatenarF())
+luisfonsi.mostrar()
+luisfonsi.sumaModificaEliminaF(1, 2)
 luisfonsi.mostrar()
