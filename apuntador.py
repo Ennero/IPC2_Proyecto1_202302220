@@ -26,8 +26,8 @@ class listita:  # La listita para las filas
                 aux.siguiente != None
             ):  # Si el siguiente no está vacío, osea que no es el último
                 aux = aux.siguiente  # Avanzo al siguiente
-            aux.siguiente = nuevo  # Ya en el lugar, lo coloco en su posición de nuevo
             nuevo.anterior = aux  # Coloco el apuntador al anterior
+            aux.siguiente = nuevo  # Ya en el lugar, lo coloco en su posición de nuevo
             self.fin = nuevo
             self.tamaño += 1  # aumento el tamaño
 
@@ -68,13 +68,15 @@ class listita:  # La listita para las filas
             aux = aux.siguiente
             cont += 1
         if aux == self.inicio:
+            aux.siguiente.anterior = None
             self.inicio=aux.siguiente #el inicio será el siguiente al actual
         elif aux == self.fin:
             aux.anterior.siguiente = None
+            self.fin=aux.anterior
         else:
             aux.anterior.siguiente = aux.siguiente #el anterior tendrá como siguiente el siguiente al actual
             aux.siguiente.anterior = aux.anterior
-        self.tamaño -= 1 #Bajo el tamaño de la lista
+        self.tamaño -= 1 #Reduzco el tamaño de la lista
 
 
 class matriz:
@@ -82,9 +84,8 @@ class matriz:
         self.nombre = nombre
         self.n = n  # cantidad de filas
         self.m = m  # cantidad de columnas
-        self.filas = listita()
-        self.columnas = listita()
-        relleno = 66  # Es para rellenar la matriz con algo que sea entero
+        self.filas = listita()  # lista de filas
+        relleno = 2023  # Es para rellenar la matriz con algo que sea entero
         contadorn = 0
         while contadorn < n:
             contadorm = 0
@@ -106,16 +107,16 @@ class matriz:
             contadoro += 1
 
     def encontrar(self, x, y): #Encuentra el dato en la posición indicada
-        return self.filas.encontrar(x - 1).encontrar(y - 1)
+        return self.filas.encontrar(x).encontrar(y) #quitaré los menos despuesitoooooooooooooooooooooooo
 
     def modificar(self, x, y, dato): #Modifica el dato en la posición indicada
-        self.filas.encontrar(x - 1).modificar(y - 1, dato)
+        self.filas.encontrar(x).modificar(y, dato) #quitaré los menos despuesitoooooooooooooooooooooooo56513216ghjhtyfybfjfytfbknguydsytes
 
     def encontrarF(self, x): #Encuentra la fila en la posición indicada
-        return self.filas.encontrar(x - 1)
+        return self.filas.encontrar(x) #quitaré los menos despuesitoooooooooooooooooooooooo
     
     def encontrarC(self, y): #Encuentra la columna en la posición indicada
-        return self.columnas.encontrar(y - 1)
+        return self.columnas.encontrar(y) #quitaré los menos despuesitoooooooooooooooooooooooo
 
     def sumaModificaEliminaF(self,pos1, pos2): #Suma las filas pos1 y pos2 y lo coloca en la fila pos1
         contador=0
@@ -124,26 +125,11 @@ class matriz:
             luis=self.encontrarF(pos1).encontrar(contador)
             fonsi=self.encontrarF(pos2).encontrar(contador)
             luisfonsi=luis+fonsi #guardando la suma de los dos valores
-            self.encontrarF(pos1).modificar(contador,luisfonsi) #modificando la fila en la posición indicada
+            self.encontrarF(pos1).modificar(contador,luisfonsi) #modificando la fila en la posición indicada---------------------------------------------------------------
+            #self.modificar(x,contador,luisfonsi)
             contador+=1
         self.filas.eliminar(pos2) #Eliminando la fila que se sumó
-        self.n=self.n-1 #bajando la cantidad de filas
-
-        
+        self.n-=1 #bajando la cantidad de filas
 
 
 
-
-
-# Aquí voy a probar si sirve lo que hice xd
-luisfonsi = matriz("LuisFonsi", 3, 3)
-
-
-    
-luisfonsi.modificar(1,1,luisfonsi.encontrar(1, 1)+luisfonsi.encontrar(1, 3))
-
-
-print(luisfonsi.encontrarF(1).concatenarF())
-luisfonsi.mostrar()
-luisfonsi.sumaModificaEliminaF(1, 2)
-luisfonsi.mostrar()
