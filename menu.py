@@ -4,6 +4,7 @@
 import xml.etree.ElementTree as ET
 import apuntador as ap
 import copy
+from graphviz import Digraph
 
 matrices=ap.listita() #aquí las matrices se guardarán :)
 matrix=ap.listita() #aquí las matrices de acceso se crearán :)
@@ -158,7 +159,11 @@ def procesarArchivo():  # Función para procesar el archivo
         #......................................................................
         
     else:
-        print("No se ha cargado un archivo, cargue un archivo .xml primero")
+        if(orden==2):
+            print("Ya se procesó un archivo, escriba el archivo de salida")
+        else:
+            print("No se ha cargado un archivo, cargue un archivo .xml primero")
+
 
 def indent(elem, level=0, hor='\t', ver='\n'): # Función para indentar el archivo (solo lo copié y lo pegué xd)
     i = ver + level * hor
@@ -174,8 +179,6 @@ def indent(elem, level=0, hor='\t', ver='\n'): # Función para indentar el archi
     else:
         if level and (not elem.tail or not elem.tail.strip()):
             elem.tail = i
-
-
 
 
 def escribirArchivo():  # Función para escribir el archivo de salida
@@ -217,6 +220,7 @@ def escribirArchivo():  # Función para escribir el archivo de salida
             ET.dump(raiz) #La verdad no entiendo nada de esta parte xd
             indent(raiz)
             salida.write(ruta)
+            print("Archivo de salida Een la ruta", ruta, "escrito exitosamente")
         #Aquí termina el try except para escribir el archivo
             
 
@@ -237,6 +241,8 @@ def escribirArchivo():  # Función para escribir el archivo de salida
 def generarGrafica():  # Función para generar la gráfica
     global orden
     if orden==2:
+        grafica=input("Ingrese el nombre de la gráfica que desea que sea mostrada: ")
+
         print("Generando gráfica...")
         print("Generando gráfica...")
 
