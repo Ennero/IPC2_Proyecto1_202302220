@@ -9,7 +9,7 @@ matrices=ap.listita() #aquí las matrices se guardarán :)
 matrix=ap.listita() #aquí las matrices de acceso se crearán :)
 matrixR=ap.listita() #aquí las matrices de acceso reducidas se guardarán :)
 matrix2=ap.listita() #aquí las matrices de acceso copiadas se guardarán :)
-repeticiones=ap.listita() #aquí las repeticiones se guardarán :)
+repeticiones=ap.listita() #aquí las repeticiones se guardarán [son 3 puntos para acceder a cada una de las parejas]
 orden=0 #este entero dictaminará el orden de los archivos
 
 def cargarArchivo():  # Función para cargar el archivo
@@ -134,7 +134,7 @@ def procesarArchivo():  # Función para procesar el archivo
         orden=2 #Ya se procesó el archivo
 
         #Aquí tambien solo ando viendo que se haya realizado correctamente
-        """contodini=0
+        contodini=0
         while contodini<matrixR.tamaño:
             matrixR.encontrar(contodini).mostrar()
             contodini+=1
@@ -154,17 +154,78 @@ def procesarArchivo():  # Función para procesar el archivo
                     print(repeticiones.encontrar(contodini).encontrar(contodoro).encontrar(contoinodoro))
                     contoinodoro+=1
                 contodoro+=1
-            contodini += 1"""
+            contodini += 1
         #......................................................................
         
     else:
         print("No se ha cargado un archivo, cargue un archivo .xml primero")
 
-    
+def indent(elem, level=0, hor='\t', ver='\n'): # Función para indentar el archivo (solo lo copié y lo pegué xd)
+    i = ver + level * hor
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + hor
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+        for elem in elem:
+            indent(elem, level + 1, hor, ver)
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
+
+
+
+
 def escribirArchivo():  # Función para escribir el archivo de salida
     global orden
     if orden==2:
-        print("Escribir Archivo de salida --")
+        #Aquí comeinza el try except para escribir el archivo
+            ruta="salida.xml"
+            #ruta=input("Ingrese la ruta del archivo de salida: ")
+            print("Escribiendo Archivo de salida...")
+            raiz=ET.Element("matrices") #Creando la raíz del archivo .xml
+
+            contador=0
+            while contador<matrixR.tamaño: #Recorriendo las matrices
+                #Aquí estoy dentro de la matriz
+                contadorini=0
+                nombreM=matrixR.encontrar(contador).nombre
+                nn=str(matrixR.encontrar(contador).n)
+                mm=str(matrixR.encontrar(contador).m)
+                gg=str(repeticiones.encontrar(contador).tamaño)
+                rama=ET.SubElement(raiz, "matriz",nombre=nombreM,n=nn,m=mm,g=gg) #Creando la rama de las matrices
+                while contadorini<matrixR.encontrar(contador).n: #Recorriendo las filas
+                    #Aquí estoy dentro de la fila
+                    contadororo=0
+                    while contadororo<matrixR.encontrar(contador).m: #Recorriendo las columnas
+                        #Aquí estoy dentro de la columna (el cuadrito o celda pues)
+                        ET.SubElement(rama, "dato", x=str(contadorini+1), y=str(contadororo+1)).text=str(matrixR.encontrar(contador).encontrar(contadorini, contadororo)) #Agregando los datos a la rama
+                        contadororo+=1
+                    contadorini+=1
+                #Aquí ya que se colocaron los valores de la matriz, se procede a colocar las frecuencias
+                contando=0
+                while contando<repeticiones.encontrar(contador).tamaño:
+                    gegege=str(repeticiones.encontrar(contador).encontrar(contando).encontrar(0))
+                    fefefe=str(repeticiones.encontrar(contador).encontrar(contando).encontrar(1))
+                    ET.SubElement(rama, "frecuencia", g=gegege).text=fefefe
+                    contando+=1
+                contador+=1
+            #Aquí escribo el archivo con lo que acabo de generar
+            salida=ET.ElementTree(raiz)
+            ET.dump(raiz) #La verdad no entiendo nada de esta parte xd
+            indent(raiz)
+            salida.write(ruta)
+        #Aquí termina el try except para escribir el archivo
+            
+
+
+
+                        
+
+
+
     
 
 
