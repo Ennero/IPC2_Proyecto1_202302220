@@ -9,6 +9,7 @@ matrices=ap.listita() #aquí las matrices se guardarán :)
 matrix=ap.listita() #aquí las matrices de acceso se crearán :)
 matrixR=ap.listita() #aquí las matrices de acceso reducidas se guardarán :)
 matrix2=ap.listita() #aquí las matrices de acceso copiadas se guardarán :)
+repeticiones=ap.listita() #aquí las repeticiones se guardarán :)
 orden=0 #este entero dictaminará el orden de los archivos
 
 def cargarArchivo():  # Función para cargar el archivo
@@ -51,9 +52,8 @@ def cargarArchivo():  # Función para cargar el archivo
         print("Ya se cargó un archivo, procese el archivo actual")
 
 
-
 def procesarArchivo():  # Función para procesar el archivo
-    global orden
+    global orden, repeticiones
     if orden==1: #Si ya se cargó el archivo
         print("Calculando las matrices binarias...")
         print("-----------------------")
@@ -92,23 +92,42 @@ def procesarArchivo():  # Función para procesar el archivo
         while contuno<matrix2.tamaño: #moviendo en el arreglo de las matrices
             contdos=0
             borde=matrix2.encontrar(contuno).n
+            
+
+            grupo=ap.listita() #lista del grupo de las parejas
+            g=1
+            banderita=False
             while contdos<borde: #recorriendo las filas de la matriz
                 jala=0
                 fila=matrix2.encontrar(contuno).encontrarF(contdos).concatenarF() #obteniendo la fila que evaluaré
                 conttres=0
-                while conttres<borde: #recorriendo las filas de la matriz
+                f=1 #contador de la frecuencia
+                while conttres<borde: #recorriendo las filas de la matriz que se analizarán
                     fila2=matrix2.encontrar(contuno).encontrarF(conttres).concatenarF() #obteniendo la fila que compararé
                     if fila==fila2: #verificando
                         jala+=1
                     if(jala>=2):
                         matrixR.encontrar(contuno).sumaModificaEliminaF(contdos, conttres) #Suma, modifica y elimina la fila
-                        matrix2.encontrar(contuno).filas.eliminar(conttres) #Elimina la fila Tiene un poco de error, pero no sé por qué :< (lo quiero arreglar el 23 de Agosto)
-                        matrix2.encontrar(contuno).n-=1
-                        borde-=1
-                        jala=1
+                        matrix2.encontrar(contuno).filas.eliminar(conttres) #Elimina la fila 
+                        matrix2.encontrar(contuno).n-=1 #Disminuye el tamaño de la matriz
+                        if(contdos==conttres-1): #Para el siguiente sumaré 1 al contador de las posición del grupo
+                            banderita=True
+                        f+=1 #Aumenta la frecuencia
+                        borde-=1 #Disminuye el borde
+                        jala=1 #Reinicia el contador de las filas iguales
                     conttres+=1
                 contdos=contdos+1
+                pareja=ap.listita() #lista de las parejas
+                pareja.agregar(g) #Agrega el número de la pareja
+                pareja.agregar(f) #Agrega la frecuencia
+                grupo.agregar(pareja) #Agrega las parejas al grupo
+                g+=1
+                if(banderita==True): #Si se eliminó una fila, se debe sumar uno porque la siguiente fila será la que estaba en la posición anterior
+                    banderita=False
+                    g+=1
+            repeticiones.agregar(grupo) #Agrega los grupos y las frecuencias a la lista de repeticiones
             contuno=contuno+1
+
         print("Suma de tuplas realizada exitosamente")
         print("-----------------------")
         print("Archivo procesado correctamente")
@@ -122,6 +141,19 @@ def procesarArchivo():  # Función para procesar el archivo
         contodini = 0
         while contodini < matrix2.tamaño:
             matrix2.encontrar(contodini).mostrar()
+            contodini += 1
+        contodini = 0
+        print("Repeticiones:")
+        while contodini < repeticiones.tamaño: #Recorriendo la lista de las repeticiones
+            contodoro=0
+            print("Grupo:", contodini+1, "----------")
+            while contodoro<repeticiones.encontrar(contodini).tamaño: #Recorriendo el grupo de las repeticiones (las bolitas)
+                contoinodoro=0
+                print("Pareja:" ,contodoro+1)
+                while contoinodoro<repeticiones.encontrar(contodini).encontrar(contodoro).tamaño: #Recorriendo las parejas
+                    print(repeticiones.encontrar(contodini).encontrar(contodoro).encontrar(contoinodoro))
+                    contoinodoro+=1
+                contodoro+=1
             contodini += 1"""
         #......................................................................
         
