@@ -220,6 +220,7 @@ def escribirArchivo():  # Función para escribir el archivo de salida
             ET.dump(raiz) #La verdad no entiendo nada de esta parte xd
             indent(raiz)
             salida.write(ruta)
+            print("-----------------------")
             print("Archivo de salida en la ruta", ruta, "escrito exitosamente")
         #Aquí termina el try except para escribir el archivo
             
@@ -250,10 +251,39 @@ def generarGrafica():  # Función para generar la gráfica
                 print("Matriz", nombre, "encontrada en la posición", pos+1)
             contador+=1
         if(pos!=-1):
+            print("-----------------------")
             print("Generando gráfica...")
-            
+            grafo=Digraph(comment="Grafica de la matriz "+nombre) #Creando el grafo de la matriz seleccionada
+            grafo.node("Matrices", "Matrices")
+            #Creación de la matriz original -----------------------------------------------------
+            grafo.node("Matriz", nombre) #Creando el nodo de la matriz
+            n=matrices.encontrar(pos).n
+            m=matrices.encontrar(pos).m
+            grafo.node("n", "n="+str(n)) #Creando los nodos de las dimensines de la matriz
+            grafo.node("m", "m="+str(m))
+            grafo.edge("Matrices", "Matriz") #Creando la arista de la gráfica
+            grafo.edge("Matriz", "n") #Creando las aristas de las dimensiones de la matriz
+            grafo.edge("Matriz", "m")
+            contador=0
+            while contador<matrices.encontrar(pos).m: #Recorriendo las columnas de la matriz
+                contadororo=0
+                luis="Matriz" #Creando el identificador del notod de la matriz para unir los nodos de sus valores
+                while contadororo<matrices.encontrar(pos).m: #Recorriendo las filas de columan (de arriba hacia abajo)
+                    name=str(contador)+str(contadororo) #Creando el nombre del nodo
+                    grafo.node(name, str(matrices.encontrar(pos).encontrar(contador,contadororo))) #Creando el nodo
+                    grafo.edge(luis, name) #Creando la arista que lo conecta con el nodo anterior (el de arribita)
+                    luis=name #El nodo anterior ahora es el nodo actual
+                    contadororo+=1
+                contador+=1
+            #Creación de la matriz reducida -----------------------------------------------------
 
 
+
+
+
+            print("-----------------------")
+            print("Gráfica generada exitosamente")
+            grafo.render("grafica de matriz", format="pdf", view=True) #Generando la gráfica
 
 
 
