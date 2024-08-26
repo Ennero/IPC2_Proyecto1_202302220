@@ -55,7 +55,7 @@ def cargarArchivo():  # Función para cargar el archivo
 
 def procesarArchivo():  # Función para procesar el archivo
     global orden, repeticiones
-    if orden==1: #Si ya se cargó el archivo
+    if orden==1: #Si ya se cargó el archivo 
         print("Calculando las matrices binarias...")
         print("-----------------------")
         contando=0
@@ -135,7 +135,7 @@ def procesarArchivo():  # Función para procesar el archivo
         orden=2 #Ya se procesó el archivo
 
         #Aquí tambien solo ando viendo que se haya realizado correctamente
-        contodini=0
+        """contodini=0
         while contodini<matrixR.tamaño:
             matrixR.encontrar(contodini).mostrar()
             contodini+=1
@@ -155,7 +155,7 @@ def procesarArchivo():  # Función para procesar el archivo
                     print(repeticiones.encontrar(contodini).encontrar(contodoro).encontrar(contoinodoro))
                     contoinodoro+=1
                 contodoro+=1
-            contodini += 1
+            contodini += 1"""
         #......................................................................
         
     else:
@@ -185,11 +185,11 @@ def escribirArchivo():  # Función para escribir el archivo de salida
     global orden
     if orden==2:
         #Aquí comeinza el try except para escribir el archivo
-            ruta="salida.xml"
+            ruta="salida"
             #ruta=input("Ingrese la ruta del archivo de salida: ")
+            ruta=ruta+".xml"
             print("Escribiendo Archivo de salida...")
             raiz=ET.Element("matrices") #Creando la raíz del archivo .xml
-
             contador=0
             while contador<matrixR.tamaño: #Recorriendo las matrices
                 #Aquí estoy dentro de la matriz
@@ -220,7 +220,7 @@ def escribirArchivo():  # Función para escribir el archivo de salida
             ET.dump(raiz) #La verdad no entiendo nada de esta parte xd
             indent(raiz)
             salida.write(ruta)
-            print("Archivo de salida Een la ruta", ruta, "escrito exitosamente")
+            print("Archivo de salida en la ruta", ruta, "escrito exitosamente")
         #Aquí termina el try except para escribir el archivo
             
 
@@ -241,10 +241,26 @@ def escribirArchivo():  # Función para escribir el archivo de salida
 def generarGrafica():  # Función para generar la gráfica
     global orden
     if orden==2:
-        grafica=input("Ingrese el nombre de la gráfica que desea que sea mostrada: ")
+        nombre=input("Ingrese el nombre de la matriz que desea que sea graficada: ")
+        contador=0
+        pos=-1
+        while contador<matrixR.tamaño: #Busca la matriz que se desea graficar a partir del nombre
+            if(nombre==matrixR.encontrar(contador).nombre): #Si los nombres coinciden:
+                pos=contador
+                print("Matriz", nombre, "encontrada en la posición", pos+1)
+            contador+=1
+        if(pos!=-1):
+            print("Generando gráfica...")
+            
 
-        print("Generando gráfica...")
-        print("Generando gráfica...")
+
+
+
+
+
+
+        else:
+            print("No se encontró la matriz con el nombre indicado")
 
 
 
@@ -286,7 +302,7 @@ while salir:  # El ciclo para mostrar el menu principal
             print("Segundo Semestre 2024")
         case "5":
             print("-----------------------")
-            print("Generando gráfica...")
+            generarGrafica()
         case "6":
             print("Salir --")
             salir = False

@@ -89,8 +89,8 @@ class matriz:
         contadorn = 0
         while contadorn < n:
             contadorm = 0
-            miami = listita()
-            while contadorm < m:
+            miami = listita() # lista de columnas
+            while contadorm < m: 
                 miami.agregar(relleno) # Aquí se rellena agrega una celda a la columna
                 contadorm += 1 #Hasta que se tiene toda la columna de nodos
             self.filas.agregar(miami) # Aquí se rellena la fila con la columna
@@ -107,16 +107,16 @@ class matriz:
             contadoro += 1
 
     def encontrar(self, x, y): #Encuentra el dato en la posición indicada
-        return self.filas.encontrar(x).encontrar(y) #quitaré los menos despuesitoooooooooooooooooooooooo
+        return self.filas.encontrar(x).encontrar(y) 
 
     def modificar(self, x, y, dato): #Modifica el dato en la posición indicada
-        self.filas.encontrar(x).modificar(y, dato) #quitaré los menos despuesitoooooooooooooooooooooooo56513216ghjhtyfybfjfytfbknguydsytes
+        self.filas.encontrar(x).modificar(y, dato) 
 
     def encontrarF(self, x): #Encuentra la fila en la posición indicada
-        return self.filas.encontrar(x) #quitaré los menos despuesitoooooooooooooooooooooooo
+        return self.filas.encontrar(x) 
     
     def encontrarC(self, y): #Encuentra la columna en la posición indicada
-        return self.columnas.encontrar(y) #quitaré los menos despuesitoooooooooooooooooooooooo
+        return self.columnas.encontrar(y) 
 
     def sumaModificaEliminaF(self,pos1, pos2): #Suma las filas pos1 y pos2 y lo coloca en la fila pos1
         contador=0
@@ -126,7 +126,7 @@ class matriz:
             fonsi=self.encontrarF(pos2).encontrar(contador)
             luisfonsi=luis+fonsi #guardando la suma de los dos valores
             self.encontrarF(pos1).modificar(contador,luisfonsi) #modificando la fila en la posición indicada---------------------------------------------------------------
-            #self.modificar(x,contador,luisfonsi)
+            #self.modificar(x,contador,luisfonsi) #Es una opción alternativa que se quedará por cualquier coas :)
             contador+=1
         self.filas.eliminar(pos2) #Eliminando la fila que se sumó
         self.n-=1 #bajando la cantidad de filas
