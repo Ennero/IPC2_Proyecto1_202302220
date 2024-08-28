@@ -17,8 +17,7 @@ def cargarArchivo():  # Función para cargar el archivo
     global orden
     if orden==0: #Si es la primera vez que se carga un archivo
         global matrices
-        ruta = "e.xml"  # Ruta del archivo
-        # ruta = input("Ingrese la ruta del archivo: ") ---------------------------------------------------------------------------------------------
+        ruta = input("Ingrese la ruta del archivo: ") # Ingresando la ruta del archivo
         print("-----------------------")
         try:
             print("Cargando Archivo...")  # Mensaje de carga
@@ -135,7 +134,7 @@ def procesarArchivo():  # Función para procesar el archivo
         orden=2 #Ya se procesó el archivo
 
         #Aquí tambien solo ando viendo que se haya realizado correctamente
-        contodini=0
+        """contodini=0
         while contodini<matrixR.tamaño:
             matrixR.encontrar(contodini).mostrar()
             contodini+=1
@@ -155,7 +154,7 @@ def procesarArchivo():  # Función para procesar el archivo
                     print(repeticiones.encontrar(contodini).encontrar(contodoro).encontrar(contoinodoro))
                     contoinodoro+=1
                 contodoro+=1
-            contodini += 1
+            contodini += 1"""
         #......................................................................
         
     else:
@@ -185,8 +184,7 @@ def escribirArchivo():  # Función para escribir el archivo de salida
     global orden
     if orden==2:
         try:
-            ruta="salida"
-            #ruta=input("Ingrese la ruta del archivo de salida: ")
+            ruta=input("Ingrese la ruta del archivo de salida: ")
             ruta=ruta+".xml"
             print("Escribiendo Archivo de salida...")
             raiz=ET.Element("matrices") #Creando la raíz del archivo .xml
@@ -248,8 +246,8 @@ def generarGrafica():  # Función para generar la gráfica
             grafo.node("Matriz", nombre) #Creando el nodo de la matriz
             n=matrices.encontrar(pos).n
             m=matrices.encontrar(pos).m
-            grafo.node("n", "n="+str(n)) #Creando los nodos de las dimensines de la matriz
-            grafo.node("m", "m="+str(m))
+            grafo.node("n", "n="+str(n), color="blue") #Creando los nodos de las dimensines de la matriz
+            grafo.node("m", "m="+str(m), color="blue")
             grafo.edge("Matrices", "Matriz") #Creando la arista de la gráfica
             grafo.edge("Matriz", "n") #Creando las aristas de las dimensiones de la matriz
             grafo.edge("Matriz", "m")
@@ -258,7 +256,7 @@ def generarGrafica():  # Función para generar la gráfica
                 contadororo=0
                 luis="Matriz" #Creando el identificador del nodo de la matriz para unir los nodos de sus valores
                 while contadororo<n: #Recorriendo las filas de columan (de arriba hacia abajo)
-                    name=str(contador)+str(contadororo) #Creando el nombre del nodo
+                    name=str(contador*1000)+str(contadororo) #Creando el nombre del nodo
                     grafo.node(name, str(matrices.encontrar(pos).encontrar(contadororo,contador))) #Creando el nodo
                     grafo.edge(luis, name) #Creando la arista que lo conecta con el nodo anterior (el de arribita)
                     luis=name #El nodo anterior ahora es el nodo actual
@@ -276,9 +274,9 @@ def generarGrafica():  # Función para generar la gráfica
                 nn=matrixR.encontrar(pos).n
                 mm=matrixR.encontrar(pos).m
                 gg=repeticiones.encontrar(pos).tamaño
-                grafoR.node("nn", "n="+str(nn)) #Creando los nodos de las dimensines de la matriz
-                grafoR.node("mm", "m="+str(mm))
-                grafoR.node("gg", "g="+str(gg))
+                grafoR.node("nn", "n="+str(nn), color="blue") #Creando los nodos de las dimensines de la matriz
+                grafoR.node("mm", "m="+str(mm), color="blue")
+                grafoR.node("gg", "g="+str(gg), color="blue")
                 grafoR.edge("Matrices", "MatrizReducida") #Creando la arista de la gráfica
                 grafoR.edge("MatrizReducida", "nn") #Creando las aristas de las dimensiones de la matriz
                 grafoR.edge("MatrizReducida", "mm")
@@ -289,7 +287,7 @@ def generarGrafica():  # Función para generar la gráfica
                     contadororo=0
                     luisito="MatrizReducida" #Creando el identificador del nodo de la MatrizReducida para unir los nodos de sus valores
                     while contadororo<nn: #Recorriendo las filas de columan (de arriba hacia abajo)
-                        name=str(contador)+str(contadororo) #Creando el nombre del nodo
+                        name=str(contador*1000)+str(contadororo) #Creando el nombre del nodo
                         grafoR.node(name, str(matrixR.encontrar(pos).encontrar(contadororo,contador))) #Creando el nodo
                         grafoR.edge(luisito, name) #Creando la arista que lo conecta con el nodo anterior (el de arribita)
                         luisito=name #El nodo anterior ahora es el nodo actual
@@ -301,11 +299,9 @@ def generarGrafica():  # Función para generar la gráfica
                     g="g="+str(repeticiones.encontrar(pos).encontrar(contadoriño).encontrar(0))
                     f="f="+str(repeticiones.encontrar(pos).encontrar(contadoriño).encontrar(1))
                     n1="g"+str(contadoriño)
-                    print(n1)
                     n2="f"+str(contadoriño)
-                    print(n2)
-                    grafoR.node(n1, g) #Creando los nodos de las dimensiones de la MatrizReducida
-                    grafoR.node(n2, f) #Creando los nodos de las dimensiones de la matriz
+                    grafoR.node(n1, g, color="red") #Creando los nodos de las dimensiones de la MatrizReducida
+                    grafoR.node(n2, f, color="red") #Creando los nodos de las dimensiones de la matriz
                     grafoR.edge("MatrizReducida", n1) #Creando las aristas de las dimensiones de la MatrizReducida
                     grafoR.edge(n1, n2)
                     contadoriño=contadoriño+1
