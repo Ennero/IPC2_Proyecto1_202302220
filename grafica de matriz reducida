@@ -1,0 +1,40 @@
+// Grafica de la matriz reducida matriz_n_3
+digraph {
+	Matrices [label=Matrices]
+	MatrizReducida [label=matriz_n_3]
+	nn [label="n=3"]
+	mm [label="m=5"]
+	Matrices -> MatrizReducida
+	MatrizReducida -> nn
+	MatrizReducida -> mm
+	00 [label=4]
+	MatrizReducida -> 00
+	01 [label=1]
+	00 -> 01
+	02 [label=0]
+	01 -> 02
+	10 [label=6]
+	MatrizReducida -> 10
+	11 [label=3]
+	10 -> 11
+	12 [label=6]
+	11 -> 12
+	20 [label=0]
+	MatrizReducida -> 20
+	21 [label=4]
+	20 -> 21
+	22 [label=8]
+	21 -> 22
+	30 [label=10]
+	MatrizReducida -> 30
+	31 [label=5]
+	30 -> 31
+	32 [label=10]
+	31 -> 32
+	40 [label=12]
+	MatrizReducida -> 40
+	41 [label=6]
+	40 -> 41
+	42 [label=12]
+	41 -> 42
+}

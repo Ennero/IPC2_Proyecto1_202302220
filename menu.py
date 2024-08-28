@@ -17,7 +17,7 @@ def cargarArchivo():  # Función para cargar el archivo
     global orden
     if orden==0: #Si es la primera vez que se carga un archivo
         global matrices
-        ruta = "e.xml"
+        ruta = "e.xml"  # Ruta del archivo
         # ruta = input("Ingrese la ruta del archivo: ") ---------------------------------------------------------------------------------------------
         print("-----------------------")
         try:
@@ -135,7 +135,7 @@ def procesarArchivo():  # Función para procesar el archivo
         orden=2 #Ya se procesó el archivo
 
         #Aquí tambien solo ando viendo que se haya realizado correctamente
-        """contodini=0
+        contodini=0
         while contodini<matrixR.tamaño:
             matrixR.encontrar(contodini).mostrar()
             contodini+=1
@@ -155,7 +155,7 @@ def procesarArchivo():  # Función para procesar el archivo
                     print(repeticiones.encontrar(contodini).encontrar(contodoro).encontrar(contoinodoro))
                     contoinodoro+=1
                 contodoro+=1
-            contodini += 1"""
+            contodini += 1
         #......................................................................
         
     else:
@@ -184,7 +184,7 @@ def indent(elem, level=0, hor='\t', ver='\n'): # Función para indentar el archi
 def escribirArchivo():  # Función para escribir el archivo de salida
     global orden
     if orden==2:
-        #Aquí comeinza el try except para escribir el archivo
+        try:
             ruta="salida"
             #ruta=input("Ingrese la ruta del archivo de salida: ")
             ruta=ruta+".xml"
@@ -222,26 +222,15 @@ def escribirArchivo():  # Función para escribir el archivo de salida
             salida.write(ruta)
             print("-----------------------")
             print("Archivo de salida en la ruta", ruta, "escrito exitosamente")
-        #Aquí termina el try except para escribir el archivo
-            
-
-
-
-                        
-
-
-
-    
-
-
-
+        except Exception as e:
+            print(f"Error al escribir el archivo de salida: {e}")
     else:
         print("No se ha procesado un archivo, procese un archivo primero")
 
 
 def generarGrafica():  # Función para generar la gráfica
     global orden
-    if orden==2:
+    if orden>0:
         nombre=input("Ingrese el nombre de la matriz que desea que sea graficada: ")
         contador=0
         pos=-1
@@ -265,40 +254,72 @@ def generarGrafica():  # Función para generar la gráfica
             grafo.edge("Matriz", "n") #Creando las aristas de las dimensiones de la matriz
             grafo.edge("Matriz", "m")
             contador=0
-            while contador<matrices.encontrar(pos).m: #Recorriendo las columnas de la matriz
+            while contador<m: #Recorriendo las columnas de la matriz
                 contadororo=0
-                luis="Matriz" #Creando el identificador del notod de la matriz para unir los nodos de sus valores
-                while contadororo<matrices.encontrar(pos).m: #Recorriendo las filas de columan (de arriba hacia abajo)
+                luis="Matriz" #Creando el identificador del nodo de la matriz para unir los nodos de sus valores
+                while contadororo<n: #Recorriendo las filas de columan (de arriba hacia abajo)
                     name=str(contador)+str(contadororo) #Creando el nombre del nodo
-                    grafo.node(name, str(matrices.encontrar(pos).encontrar(contador,contadororo))) #Creando el nodo
+                    grafo.node(name, str(matrices.encontrar(pos).encontrar(contadororo,contador))) #Creando el nodo
                     grafo.edge(luis, name) #Creando la arista que lo conecta con el nodo anterior (el de arribita)
                     luis=name #El nodo anterior ahora es el nodo actual
                     contadororo+=1
                 contador+=1
             #Creación de la matriz reducida -----------------------------------------------------
+            if(orden>1): #Si ya se ha procesado el archivo
+                print("-----------------------")
+                print("Generando gráfica reducida...")
+                grafoR=Digraph(comment="Grafica de la matriz reducida "+nombre) #Creando el grafoR de la matriz seleccionada
+                grafoR.node("Matrices", "Matrices")
 
+                #Creación de la matriz reducida -----------------------------------------------------
+                grafoR.node("MatrizReducida", nombre) #Creando el nodo de la matriz
+                nn=matrixR.encontrar(pos).n
+                mm=matrixR.encontrar(pos).m
+                gg=repeticiones.encontrar(pos).tamaño
+                grafoR.node("nn", "n="+str(nn)) #Creando los nodos de las dimensines de la matriz
+                grafoR.node("mm", "m="+str(mm))
+                grafoR.node("gg", "g="+str(gg))
+                grafoR.edge("Matrices", "MatrizReducida") #Creando la arista de la gráfica
+                grafoR.edge("MatrizReducida", "nn") #Creando las aristas de las dimensiones de la matriz
+                grafoR.edge("MatrizReducida", "mm")
+                grafoR.edge("MatrizReducida", "gg")
 
-
-
-
+                contador=0
+                while contador<mm: #Recorriendo las columnas de la MatrizReducida
+                    contadororo=0
+                    luisito="MatrizReducida" #Creando el identificador del nodo de la MatrizReducida para unir los nodos de sus valores
+                    while contadororo<nn: #Recorriendo las filas de columan (de arriba hacia abajo)
+                        name=str(contador)+str(contadororo) #Creando el nombre del nodo
+                        grafoR.node(name, str(matrixR.encontrar(pos).encontrar(contadororo,contador))) #Creando el nodo
+                        grafoR.edge(luisito, name) #Creando la arista que lo conecta con el nodo anterior (el de arribita)
+                        luisito=name #El nodo anterior ahora es el nodo actual
+                        contadororo+=1
+                    contador+=1
+                contadoriño=0
+                #verificando estoooooooooooooosfdadsfsdnagndhfm jdnk afhamsdnfk lsdfhnks
+                while contadoriño<gg: #Recorriendo los grupos de las repeticiones
+                    g="g="+str(repeticiones.encontrar(pos).encontrar(contadoriño).encontrar(0))
+                    f="f="+str(repeticiones.encontrar(pos).encontrar(contadoriño).encontrar(1))
+                    n1="g"+str(contadoriño)
+                    print(n1)
+                    n2="f"+str(contadoriño)
+                    print(n2)
+                    grafoR.node(n1, g) #Creando los nodos de las dimensiones de la MatrizReducida
+                    grafoR.node(n2, f) #Creando los nodos de las dimensiones de la matriz
+                    grafoR.edge("MatrizReducida", n1) #Creando las aristas de las dimensiones de la MatrizReducida
+                    grafoR.edge(n1, n2)
+                    contadoriño=contadoriño+1
+            #Creación de la matriz reducida -----------------------------------------------------
             print("-----------------------")
             print("Gráfica generada exitosamente")
             grafo.render("grafica de matriz", format="pdf", view=True) #Generando la gráfica
-
-
-
-
-
+            if(orden>1):
+                print("Gráfica reducida generada exitosamente")
+                grafoR.render("grafica de matriz reducida", format="pdf", view=True) #Generando la gráfica reducida
         else:
             print("No se encontró la matriz con el nombre indicado")
-
-
-
-
-
-        
     else:
-        print("No se ha procesado un archivo, procese un archivo primero")
+        print("No se ha cargado un archivo, cargue un archivo primero")
 
 print("      BIENVENIDO")
 salir = True  # Variable para salir del ciclo
