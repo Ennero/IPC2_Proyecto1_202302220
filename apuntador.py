@@ -20,20 +20,24 @@ class listita:  # La listita para las filas
             self.inicio = nuevo
             self.fin = nuevo  # Igual que el final porque solo hay uno
             self.tamaño += 1  # Y el tamaño de la lista sería 1
+            nuevo.siguiente=nuevo
+            nuevo.anterior=nuevo
         else:
             aux = self.inicio
             while (
-                aux.siguiente != None
+                aux.siguiente != self.inicio
             ):  # Si el siguiente no está vacío, osea que no es el último
                 aux = aux.siguiente  # Avanzo al siguiente
             nuevo.anterior = aux  # Coloco el apuntador al anterior
             aux.siguiente = nuevo  # Ya en el lugar, lo coloco en su posición de nuevo
+            nuevo.siguiente = self.inicio
+            self.inicio.anterior = nuevo
             self.fin = nuevo
             self.tamaño += 1  # aumento el tamaño
 
     def mostrando(self):  # La verdad no sirve para nada pero me gusta verlo :)
         aux = self.inicio
-        while aux != None:
+        while aux != self.fin:
             print(aux.dato)
             aux = aux.siguiente
 
@@ -56,7 +60,7 @@ class listita:  # La listita para las filas
     def concatenarF(self): #Función para que la fila sea una sola línea
         aux = self.inicio
         cadena = ""
-        while aux != None:
+        while aux != self.fin:
             cadena += str(aux.dato) #proceso de concatenación por cada elemento de la fila
             aux = aux.siguiente
         return cadena
@@ -68,10 +72,10 @@ class listita:  # La listita para las filas
             aux = aux.siguiente
             cont += 1
         if aux == self.inicio:
-            aux.siguiente.anterior = None
+            aux.siguiente.anterior = self.fin
             self.inicio=aux.siguiente #el inicio será el siguiente al actual
         elif aux == self.fin:
-            aux.anterior.siguiente = None
+            aux.anterior.siguiente = self.inicio
             self.fin=aux.anterior
         else:
             aux.anterior.siguiente = aux.siguiente #el anterior tendrá como siguiente el siguiente al actual
