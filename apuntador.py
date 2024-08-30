@@ -4,10 +4,6 @@ class nodo:  # El nodito
         self.siguiente = siguiente  # apuntadores
         self.anterior = anterior
 
-
-#Las matrices funcionan desde 1 y las listas desde 0 :)
-#Soy bobo pero si funciona así lo dejo [Es la ley del ingeniero en sistemas]
-
 class listita:  # La listita para las filas
     def __init__(self, inicio=None, fin=None, tamaño=0):  # El constructor de la lista
         self.inicio = inicio
