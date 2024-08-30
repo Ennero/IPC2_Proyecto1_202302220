@@ -1,250 +1,76 @@
-// Grafica de la matriz reducida matriz_n_1
+// Grafica de la matriz reducida matriz_n_2
 digraph {
 	Matrices [label=Matrices]
-	MatrizReducida [label=matriz_n_1]
-	nn [label="n=7" color=blue]
-	mm [label="m=15" color=blue]
-	gg [label="g=7" color=blue]
+	MatrizReducida [label=matriz_n_2]
+	nn [label="n=3" color=blue]
+	mm [label="m=8" color=blue]
+	gg [label="g=4" color=blue]
 	Matrices -> MatrizReducida
 	MatrizReducida -> nn
 	MatrizReducida -> mm
 	MatrizReducida -> gg
-	00 [label=15]
+	00 [label=11]
 	MatrizReducida -> 00
-	01 [label=6]
+	01 [label=4]
 	00 -> 01
-	02 [label=6]
+	02 [label=0]
 	01 -> 02
-	03 [label=7]
-	02 -> 03
-	04 [label=2]
-	03 -> 04
-	05 [label=0]
-	04 -> 05
-	06 [label=0]
-	05 -> 06
-	10000 [label=12]
+	10000 [label=9]
 	MatrizReducida -> 10000
 	10001 [label=0]
 	10000 -> 10001
-	10002 [label=3]
+	10002 [label=6]
 	10001 -> 10002
-	10003 [label=3]
-	10002 -> 10003
-	10004 [label=6]
-	10003 -> 10004
-	10005 [label=3]
-	10004 -> 10005
-	10006 [label=3]
-	10005 -> 10006
-	20000 [label=16]
+	20000 [label=12]
 	MatrizReducida -> 20000
-	20001 [label=12]
+	20001 [label=8]
 	20000 -> 20001
-	20002 [label=4]
+	20002 [label=8]
 	20001 -> 20002
-	20003 [label=4]
-	20002 -> 20003
-	20004 [label=8]
-	20003 -> 20004
-	20005 [label=4]
-	20004 -> 20005
-	20006 [label=4]
-	20005 -> 20006
-	30000 [label=20]
+	30000 [label=15]
 	MatrizReducida -> 30000
-	30001 [label=15]
+	30001 [label=10]
 	30000 -> 30001
-	30002 [label=5]
+	30002 [label=10]
 	30001 -> 30002
-	30003 [label=5]
-	30002 -> 30003
-	30004 [label=10]
-	30003 -> 30004
-	30005 [label=5]
-	30004 -> 30005
-	30006 [label=5]
-	30005 -> 30006
-	40000 [label=24]
+	40000 [label=18]
 	MatrizReducida -> 40000
-	40001 [label=18]
+	40001 [label=12]
 	40000 -> 40001
-	40002 [label=6]
+	40002 [label=12]
 	40001 -> 40002
-	40003 [label=6]
-	40002 -> 40003
-	40004 [label=12]
-	40003 -> 40004
-	40005 [label=6]
-	40004 -> 40005
-	40006 [label=6]
-	40005 -> 40006
-	50000 [label=28]
+	50000 [label=21]
 	MatrizReducida -> 50000
-	50001 [label=21]
+	50001 [label=14]
 	50000 -> 50001
-	50002 [label=7]
+	50002 [label=14]
 	50001 -> 50002
-	50003 [label=0]
-	50002 -> 50003
-	50004 [label=0]
-	50003 -> 50004
-	50005 [label=7]
-	50004 -> 50005
-	50006 [label=7]
-	50005 -> 50006
-	60000 [label=4]
+	60000 [label=3]
 	MatrizReducida -> 60000
-	60001 [label=3]
+	60001 [label=2]
 	60000 -> 60001
-	60002 [label=1]
+	60002 [label=2]
 	60001 -> 60002
-	60003 [label=1]
-	60002 -> 60003
-	60004 [label=2]
-	60003 -> 60004
-	60005 [label=1]
-	60004 -> 60005
-	60006 [label=1]
-	60005 -> 60006
-	70000 [label=8]
+	70000 [label=2]
 	MatrizReducida -> 70000
-	70001 [label=6]
+	70001 [label=4]
 	70000 -> 70001
-	70002 [label=2]
+	70002 [label=4]
 	70001 -> 70002
-	70003 [label=2]
-	70002 -> 70003
-	70004 [label=4]
-	70003 -> 70004
-	70005 [label=2]
-	70004 -> 70005
-	70006 [label=2]
-	70005 -> 70006
-	80000 [label=12]
-	MatrizReducida -> 80000
-	80001 [label=17]
-	80000 -> 80001
-	80002 [label=0]
-	80001 -> 80002
-	80003 [label=6]
-	80002 -> 80003
-	80004 [label=11]
-	80003 -> 80004
-	80005 [label=9]
-	80004 -> 80005
-	80006 [label=0]
-	80005 -> 80006
-	90000 [label=12]
-	MatrizReducida -> 90000
-	90001 [label=9]
-	90000 -> 90001
-	90002 [label=3]
-	90001 -> 90002
-	90003 [label=3]
-	90002 -> 90003
-	90004 [label=6]
-	90003 -> 90004
-	90005 [label=3]
-	90004 -> 90005
-	90006 [label=3]
-	90005 -> 90006
-	100000 [label=8]
-	MatrizReducida -> 100000
-	100001 [label=6]
-	100000 -> 100001
-	100002 [label=2]
-	100001 -> 100002
-	100003 [label=2]
-	100002 -> 100003
-	100004 [label=4]
-	100003 -> 100004
-	100005 [label=2]
-	100004 -> 100005
-	100006 [label=2]
-	100005 -> 100006
-	110000 [label=8]
-	MatrizReducida -> 110000
-	110001 [label=6]
-	110000 -> 110001
-	110002 [label=2]
-	110001 -> 110002
-	110003 [label=2]
-	110002 -> 110003
-	110004 [label=4]
-	110003 -> 110004
-	110005 [label=2]
-	110004 -> 110005
-	110006 [label=2]
-	110005 -> 110006
-	120000 [label=12]
-	MatrizReducida -> 120000
-	120001 [label=9]
-	120000 -> 120001
-	120002 [label=3]
-	120001 -> 120002
-	120003 [label=3]
-	120002 -> 120003
-	120004 [label=6]
-	120003 -> 120004
-	120005 [label=3]
-	120004 -> 120005
-	120006 [label=3]
-	120005 -> 120006
-	130000 [label=24]
-	MatrizReducida -> 130000
-	130001 [label=18]
-	130000 -> 130001
-	130002 [label=6]
-	130001 -> 130002
-	130003 [label=6]
-	130002 -> 130003
-	130004 [label=12]
-	130003 -> 130004
-	130005 [label=6]
-	130004 -> 130005
-	130006 [label=6]
-	130005 -> 130006
-	140000 [label=0]
-	MatrizReducida -> 140000
-	140001 [label=0]
-	140000 -> 140001
-	140002 [label=0]
-	140001 -> 140002
-	140003 [label=0]
-	140002 -> 140003
-	140004 [label=0]
-	140003 -> 140004
-	140005 [label=0]
-	140004 -> 140005
-	140006 [label=0]
-	140005 -> 140006
 	g0 [label="g=1" color=red]
-	f0 [label="f=4" color=red]
+	f0 [label="f=3" color=red]
 	MatrizReducida -> g0
 	g0 -> f0
 	g1 [label="g=2" color=red]
-	f1 [label="f=3" color=red]
+	f1 [label="f=2" color=red]
 	MatrizReducida -> g1
 	g1 -> f1
 	g2 [label="g=4" color=red]
-	f2 [label="f=1" color=red]
+	f2 [label="f=2" color=red]
 	MatrizReducida -> g2
 	g2 -> f2
-	g3 [label="g=5" color=red]
+	g3 [label="g=6" color=red]
 	f3 [label="f=2" color=red]
 	MatrizReducida -> g3
 	g3 -> f3
-	g4 [label="g=6" color=red]
-	f4 [label="f=3" color=red]
-	MatrizReducida -> g4
-	g4 -> f4
-	g5 [label="g=7" color=red]
-	f5 [label="f=1" color=red]
-	MatrizReducida -> g5
-	g5 -> f5
-	g6 [label="g=8" color=red]
-	f6 [label="f=1" color=red]
-	MatrizReducida -> g6
-	g6 -> f6
 }

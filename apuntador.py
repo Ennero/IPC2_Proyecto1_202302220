@@ -1,8 +1,8 @@
 class nodo:  # El nodito
-    def __init__(self, dato, siguiente=None, anterior=None):
+    def __init__(self, dato, siguiente=None):
         self.dato = dato  # Datos
         self.siguiente = siguiente  # apuntadores
-        self.anterior = anterior
+        #self.anterior = anterior
 
 class listita:  # La listita para las filas
     def __init__(self, inicio=None, fin=None, tamaño=0):  # El constructor de la lista
@@ -17,25 +17,29 @@ class listita:  # La listita para las filas
             self.fin = nuevo  # Igual que el final porque solo hay uno
             self.tamaño += 1  # Y el tamaño de la lista sería 1
             nuevo.siguiente=nuevo
-            nuevo.anterior=nuevo
+            #nuevo.anterior=nuevo
         else:
-            aux = self.inicio
+            """aux = self.inicio
             while (
                 aux.siguiente != self.inicio
             ):  # Si el siguiente no está vacío, osea que no es el último
                 aux = aux.siguiente  # Avanzo al siguiente
-            nuevo.anterior = aux  # Coloco el apuntador al anterior
-            aux.siguiente = nuevo  # Ya en el lugar, lo coloco en su posición de nuevo
+            aux.siguiente = nuevo  # Ya en el lugar, lo coloco en su posición de nuevo"""
             nuevo.siguiente = self.inicio
-            self.inicio.anterior = nuevo
+            self.fin.siguiente = nuevo
             self.fin = nuevo
             self.tamaño += 1  # aumento el tamaño
 
     def mostrando(self):  # La verdad no sirve para nada pero me gusta verlo :)
         aux = self.inicio
-        while aux != self.fin:
+        """while aux != self.fin:
+            print(aux.dato)
+            aux = aux.siguiente"""
+        while True:
             print(aux.dato)
             aux = aux.siguiente
+            if aux==self.inicio:
+                break
 
     def modificar(self, pos, dato):  # Para modificar un dato en una posición indicada
         aux = self.inicio
@@ -59,10 +63,24 @@ class listita:  # La listita para las filas
         while aux != self.fin:
             cadena += str(aux.dato) #proceso de concatenación por cada elemento de la fila
             aux = aux.siguiente
+            if aux==self.inicio:
+                break
         return cadena
     
     def eliminar(self, pos):
-        aux = self.inicio
+        if pos==0:
+            self.inicio=self.inicio.siguiente
+            self.fin.siguiente=self.inicio
+        else:
+            aux = self.inicio
+            cont = 0
+            while cont < pos-1:
+                aux = aux.siguiente
+                cont += 1
+            aux.siguiente = aux.siguiente.siguiente
+        self.tamaño -= 1
+
+        """aux = self.inicio
         cont = 0
         while cont < pos: # Ubico donde quiero borrar el nodo
             aux = aux.siguiente
@@ -76,7 +94,7 @@ class listita:  # La listita para las filas
         else:
             aux.anterior.siguiente = aux.siguiente #el anterior tendrá como siguiente el siguiente al actual
             aux.siguiente.anterior = aux.anterior
-        self.tamaño -= 1 #Reduzco el tamaño de la lista
+        self.tamaño -= 1 #Reduzco el tamaño de la lista"""
 
 
 class matriz:
