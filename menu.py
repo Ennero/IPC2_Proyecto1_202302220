@@ -39,15 +39,16 @@ def cargarArchivo():  # Función para cargar el archivo
             print("Archivo", ruta, "cargado exitosamente") #Depurado así que no sé que efectivamente está todo bien hasta aquí
 
             # Ciclo para ver si lo hice bien :)
-            """contodini = 0
+            contodini = 0
             while contodini < matrices.tamaño:
                 matrices.encontrar(contodini).mostrar()
-                contodini += 1"""
+                contodini += 1
             #......................................................................
-
+            orden=1 #Ya se cargó un archivo
         except Exception as e:
             print(f"Error al cargar el archivo: {e}")
-        orden=1 #Ya se cargó un archivo
+            orden=0 #No se cargó un archivo
+
     else: #Si ya se cargó un archivo
         print("Ya se cargó un archivo, procese el archivo actual")
 
@@ -92,8 +93,7 @@ def procesarArchivo():  # Función para procesar el archivo
         while contuno<matrix2.tamaño: #moviendo en el arreglo de las matrices
             contdos=0
             borde=matrix2.encontrar(contuno).n
-            
-
+            print("Matriz reducida", contuno+1, "procesada exitosamente...")
             grupo=ap.listita() #lista del grupo de las parejas
             g=1
             banderita=False
@@ -191,6 +191,7 @@ def escribirArchivo():  # Función para escribir el archivo de salida
             contador=0
             while contador<matrixR.tamaño: #Recorriendo las matrices
                 #Aquí estoy dentro de la matriz
+                print("Matriz", matrixR.encontrar(contador).nombre, "escrita exitosamente...")
                 contadorini=0
                 nombreM=matrixR.encontrar(contador).nombre
                 nn=str(matrixR.encontrar(contador).n)

@@ -19,7 +19,7 @@ class listita:  # La listita para las filas
             nuevo.siguiente=nuevo
             #nuevo.anterior=nuevo
         else:
-            """aux = self.inicio
+            """aux = self.inicio #Lo comento porque antes lo había hecho como lista doblemente enlazada
             while (
                 aux.siguiente != self.inicio
             ):  # Si el siguiente no está vacío, osea que no es el último
@@ -32,7 +32,7 @@ class listita:  # La listita para las filas
 
     def mostrando(self):  # La verdad no sirve para nada pero me gusta verlo :)
         aux = self.inicio
-        """while aux != self.fin:
+        """while aux != self.fin: #Todo lo comentado es por ese pasado oscuro del código :(
             print(aux.dato)
             aux = aux.siguiente"""
         while True:
@@ -69,15 +69,15 @@ class listita:  # La listita para las filas
     
     def eliminar(self, pos):
         if pos==0:
-            self.inicio=self.inicio.siguiente
-            self.fin.siguiente=self.inicio
+            self.inicio=self.inicio.siguiente #Solo inicio es igual a su siguiente (borrando el primero)
+            self.fin.siguiente=self.inicio #Ahora el siguiente del final es el nuevo inicio
         else:
             aux = self.inicio
             cont = 0
-            while cont < pos-1:
+            while cont < pos-1: #Ubico la posición con menos 1 porque necesito modificar el anterior al que quiero borrar
                 aux = aux.siguiente
                 cont += 1
-            aux.siguiente = aux.siguiente.siguiente
+            aux.siguiente = aux.siguiente.siguiente #Aquí hago que el anterior (-1) apunte al siguiente (+1) de la posición actual (0)
         self.tamaño -= 1
 
         """aux = self.inicio
