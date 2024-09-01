@@ -39,10 +39,10 @@ def cargarArchivo():  # Función para cargar el archivo
             print("Archivo", ruta, "cargado exitosamente") #Depurado así que no sé que efectivamente está todo bien hasta aquí
 
             # Ciclo para ver si lo hice bien :)
-            contodini = 0
+            """contodini = 0
             while contodini < matrices.tamaño:
                 matrices.encontrar(contodini).mostrar()
-                contodini += 1
+                contodini += 1"""
             #......................................................................
             orden=1 #Ya se cargó un archivo
         except Exception as e:
@@ -309,10 +309,10 @@ def generarGrafica():  # Función para generar la gráfica
             #Creación de la matriz reducida -----------------------------------------------------
             print("-----------------------")
             print("Gráfica generada exitosamente")
-            grafo.render("grafica de matriz", format="pdf", view=True) #Generando la gráfica
+            grafo.render("Grafica de matriz", format="pdf", view=True) #Generando la gráfica
             if(orden>1):
                 print("Gráfica reducida generada exitosamente")
-                grafoR.render("grafica de matriz reducida", format="pdf", view=True) #Generando la gráfica reducida
+                grafoR.render("Grafica de matriz reducida", format="pdf", view=True) #Generando la gráfica reducida
         else:
             print("No se encontró la matriz con el nombre indicado")
     else:
