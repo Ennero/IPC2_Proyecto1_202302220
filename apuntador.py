@@ -65,6 +65,7 @@ class listita:  # La listita para las filas
             aux = aux.siguiente
             if aux==self.inicio:
                 break
+        cadena += str(aux.dato)
         return cadena
     
     def eliminar(self, pos):

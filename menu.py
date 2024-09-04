@@ -95,8 +95,8 @@ def procesarArchivo():  # Función para procesar el archivo
             borde=matrix2.encontrar(contuno).n
             print("Matriz reducida", contuno+1, "procesada exitosamente...")
             grupo=ap.listita() #lista del grupo de las parejas
-            g=1
-            banderita=False
+            """g=1"""
+
             while contdos<borde: #recorriendo las filas de la matriz
                 jala=0
                 fila=matrix2.encontrar(contuno).encontrarF(contdos).concatenarF() #obteniendo la fila que evaluaré
@@ -109,22 +109,29 @@ def procesarArchivo():  # Función para procesar el archivo
                     if(jala>=2):
                         matrixR.encontrar(contuno).sumaModificaEliminaF(contdos, conttres) #Suma, modifica y elimina la fila
                         matrix2.encontrar(contuno).filas.eliminar(conttres) #Elimina la fila 
+                        conttres-=1 #Como se quitó el de la posición, entonces no lo reitero
                         matrix2.encontrar(contuno).n-=1 #Disminuye el tamaño de la matriz
-                        if(contdos==conttres-1): #Para el siguiente sumaré 1 al contador de las posición del grupo
-                            banderita=True
                         f+=1 #Aumenta la frecuencia
                         borde-=1 #Disminuye el borde
-                        jala=1 #Reinicia el contador de las filas iguales
+                        jala-=1 #Reinicia el contador de las filas iguales
                     conttres+=1
                 contdos=contdos+1
                 pareja=ap.listita() #lista de las parejas
+
+                # Aquí hago un ciclo crear los g
+                paula=0
+                paulita=matrices.encontrar(contuno).n
+                g=1 # Comenzando desde 0
+                while paula<paulita:
+                    fila3=matrix.encontrar(contuno).encontrarF(paula).concatenarF() 
+                    if fila==fila3:# Comparo con una copia de una fila de la matriz original
+                        break
+                    g+=1 # Voy sumando hasta encontrar fila 
+                    paula+=1 # Y voy sumando las paulas xd
+
                 pareja.agregar(g) #Agrega el número de la pareja
                 pareja.agregar(f) #Agrega la frecuencia
                 grupo.agregar(pareja) #Agrega las parejas al grupo
-                g+=1
-                if(banderita==True): #Si se eliminó una fila, se debe sumar uno porque la siguiente fila será la que estaba en la posición anterior
-                    banderita=False
-                    g+=1
             repeticiones.agregar(grupo) #Agrega los grupos y las frecuencias a la lista de repeticiones
             contuno=contuno+1
 
