@@ -1,0 +1,86 @@
+<matrices>
+	<matriz nombre="Basico_matriz1" n="3" m="5" g="3">
+		<dato x="1" y="1">1823</dato>
+		<dato x="1" y="2">0</dato>
+		<dato x="1" y="3">0</dato>
+		<dato x="1" y="4">1731</dato>
+		<dato x="1" y="5">1663</dato>
+		<dato x="2" y="1">324</dato>
+		<dato x="2" y="2">0</dato>
+		<dato x="2" y="3">432</dato>
+		<dato x="2" y="4">5</dato>
+		<dato x="2" y="5">6</dato>
+		<dato x="3" y="1">1145</dato>
+		<dato x="3" y="2">0</dato>
+		<dato x="3" y="3">206</dato>
+		<dato x="3" y="4">0</dato>
+		<dato x="3" y="5">1309</dato>
+		<frecuencia g="1">2</frecuencia>
+		<frecuencia g="2">1</frecuencia>
+		<frecuencia g="3">2</frecuencia>
+	</matriz>
+	<matriz nombre="Basico_matriz2" n="4" m="6" g="4">
+		<dato x="1" y="1">0</dato>
+		<dato x="1" y="2">0</dato>
+		<dato x="1" y="3">567</dato>
+		<dato x="1" y="4">0</dato>
+		<dato x="1" y="5">79</dato>
+		<dato x="1" y="6">145</dato>
+		<dato x="2" y="1">123</dato>
+		<dato x="2" y="2">0</dato>
+		<dato x="2" y="3">214</dato>
+		<dato x="2" y="4">545</dato>
+		<dato x="2" y="5">663</dato>
+		<dato x="2" y="6">732</dato>
+		<dato x="3" y="1">21</dato>
+		<dato x="3" y="2">0</dato>
+		<dato x="3" y="3">48</dato>
+		<dato x="3" y="4">650</dato>
+		<dato x="3" y="5">562</dato>
+		<dato x="3" y="6">0</dato>
+		<dato x="4" y="1">10</dato>
+		<dato x="4" y="2">3</dato>
+		<dato x="4" y="3">24</dato>
+		<dato x="4" y="4">535</dato>
+		<dato x="4" y="5">6</dato>
+		<dato x="4" y="6">7</dato>
+		<frecuencia g="1">2</frecuencia>
+		<frecuencia g="2">1</frecuencia>
+		<frecuencia g="4">2</frecuencia>
+		<frecuencia g="5">1</frecuencia>
+	</matriz>
+	<matriz nombre="Basico_matriz3" n="2" m="5" g="2">
+		<dato x="1" y="1">2056</dato>
+		<dato x="1" y="2">0</dato>
+		<dato x="1" y="3">0</dato>
+		<dato x="1" y="4">1025</dato>
+		<dato x="1" y="5">0</dato>
+		<dato x="2" y="1">1236</dato>
+		<dato x="2" y="2">41</dato>
+		<dato x="2" y="3">764</dato>
+		<dato x="2" y="4">1225</dato>
+		<dato x="2" y="5">1304</dato>
+		<frecuencia g="1">3</frecuencia>
+		<frecuencia g="2">2</frecuencia>
+	</matriz>
+	<matriz nombre="Basico_matriz4" n="3" m="5" g="3">
+		<dato x="1" y="1">4</dato>
+		<dato x="1" y="2">0</dato>
+		<dato x="1" y="3">12</dato>
+		<dato x="1" y="4">0</dato>
+		<dato x="1" y="5">20</dato>
+		<dato x="2" y="1">0</dato>
+		<dato x="2" y="2">21</dato>
+		<dato x="2" y="3">24</dato>
+		<dato x="2" y="4">27</dato>
+		<dato x="2" y="5">0</dato>
+		<dato x="3" y="1">6</dato>
+		<dato x="3" y="2">7</dato>
+		<dato x="3" y="3">8</dato>
+		<dato x="3" y="4">9</dato>
+		<dato x="3" y="5">1</dato>
+		<frecuencia g="1">4</frecuencia>
+		<frecuencia g="2">3</frecuencia>
+		<frecuencia g="6">1</frecuencia>
+	</matriz>
+</matrices>

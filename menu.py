@@ -192,7 +192,7 @@ def escribirArchivo():  # Función para escribir el archivo de salida
     if orden==2:
         try:
             ruta=input("Ingrese la ruta del archivo de salida: ")
-            ruta=ruta+".xml"
+            ruta=ruta+".xml"   
             print("Escribiendo Archivo de salida...")
             raiz=ET.Element("matrices") #Creando la raíz del archivo .xml
             contador=0
