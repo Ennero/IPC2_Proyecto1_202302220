@@ -1,68 +1,34 @@
-<div align="center">
+# Procesamiento de matrices XML y visualización con Graphviz
 
-# 📊 Orthogonal Matrices & Pattern Graphviz Visualizer in Python (IPC2)
+Aplicación por consola que carga matrices desde XML, construye representaciones binarias/reducidas con listas enlazadas y genera reportes gráficos y archivos de salida.
 
-**Implementación de matrices dispersas y ortogonales con generación automática de diagramas de patrones en Graphviz con Python.**
+## Requisitos
 
-[![Language](https://img.shields.io/badge/Language-Python-blue?style=for-the-badge)](https://github.com/Ennero/IPC2_Proyecto1_202302220)
-[![Course](https://img.shields.io/badge/Course-Introducción%20a%20la%20Programación%20y%20Computación%202-003366?style=for-the-badge)](https://ingenieria.usac.edu.gt/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+Python 3, paquete graphviz de requirements.txt y Graphviz instalado como programa del sistema (comando dot).
 
-</div>
+## Ejecución
 
----
+Los comandos parten de la raíz del repositorio, salvo donde se indica otra terminal.
 
-
-## 📌 Descripción General
-
-Este repositorio contiene la implementación y entrega de **📊 Orthogonal Matrices & Pattern Graphviz Visualizer in Python (IPC2)**, desarrollado en el curso de **Introducción a la Programación y Computación 2** en la Universidad de San Carlos de Guatemala.
-
-- **Objetivo:** Implementación de matrices dispersas y ortogonales con generación automática de diagramas de patrones en Graphviz con Python.
-- **Stack Principal:** `Python`.
-- **Área:** Ciencias de la Computación, Algoritmos y Desarrollo de Software.
-
----
-
-## 🚀 Características y Componentes
-
-- Implementación modular y buenas prácticas de codificación.
-- Manejo estructurado de datos, control de flujo y validaciones.
-- Documentación y scripts de soporte para compilación o ejecución.
-
----
-
-## 📦 Estructura del Proyecto
-
-```
-IPC2_Proyecto1_202302220/
-├── src/ o archivos de código fuente
-├── docs/ (si aplica)
-├── .gitignore
-├── LICENSE
-└── README.md
+```bash
+python -m pip install -r requirements.txt
+python menu.py
 ```
 
----
+## Recorrido de demostración
 
-## ⚙️ Requisitos y Ejecución
+Cargar basico.xml o avanzado.xml desde el menú, procesar la matriz y solicitar un reporte. Los archivos de salida y gráficas se generan en el directorio de ejecución.
 
-1. Clonar el repositorio:
-   ```bash
-   git clone https://github.com/Ennero/IPC2_Proyecto1_202302220.git
-   cd IPC2_Proyecto1_202302220
-   ```
-2. Ejecutar según el entorno (`Python`):
-   - Consultar los scripts o archivos principales del proyecto para parámetros específicos.
+## Organización
 
----
+Carpetas de la entrega: [`Documentacion/`](Documentacion/).
 
-## 📄 Licencia
+## Alcance y límites
 
-Este proyecto está bajo la Licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+menu.py es el punto de entrada y apuntador.py contiene las estructuras. El paquete Python graphviz no instala por sí solo el ejecutable dot.
 
----
+## Contexto y licencia
 
-## 👨‍💻 Autor
+Trabajo académico o de aprendizaje conservado en el portafolio de [Enner Mendizabal](https://github.com/Ennero). Los créditos de los trabajos en grupo se conservan en sus entregas y manuales.
 
-- **Enner Mendizabal** - [@Ennero](https://github.com/Ennero)  
-- *Facultad de Ingeniería, Universidad de San Carlos de Guatemala.*
+Consultar [LICENSE](LICENSE) para la licencia de la raíz. Las dependencias y los componentes con avisos o licencias propios conservan sus condiciones.
